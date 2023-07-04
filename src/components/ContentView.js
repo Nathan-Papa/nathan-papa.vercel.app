@@ -8,8 +8,8 @@ const ContentView = (props) => {
                 <div className="flex flex-col h-full w-[40%]">
                     <h1 className="text-5xl mb-[4%]">Nathan Papa</h1>
                     <p className="ml-[4%]">
-                        I'm an aspiring software engineer, currently a second-year student
-                        studying computer science at Georgia Tech.
+                        {`I'm an aspiring software engineer, currently a second-year student
+                        studying computer science at Georgia Tech.`}
                     </p>
                 </div>
                 <div className="flex h-full w-[40%]">

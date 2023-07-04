@@ -13,7 +13,7 @@ export default function Home() {
 		<html lang="en">
 			<head>
 				<meta name="description" content="Nathan Papa's Personal Website" />
-				<title>Nathan Papa's Personal Website</title>
+				<title>{`Nathan Papa's Personal Website`}</title>
 			</head>
 			<body>
 				<div className="flex px-48 h-screen flex-col items-center justify-between">
