@@ -5,8 +5,6 @@
 import Navbar from '../components/Navbar';
 import ContentView from '../components/ContentView';
 import Socials from '../components/Socials';
-import Project from '../components/Project';
-import Resume from '../components/Resume';
 import React from 'react';
 
 export default function Home() {
@@ -19,7 +17,8 @@ export default function Home() {
 			</head>
 			<body>
 				<div className="flex px-48 h-screen flex-col items-center justify-between">
-					<Navbar />
+					<Navbar setVisible={setVisible} />
+					<ContentView visible={visible} />
 					<Socials />
 				</div>
 			</body>

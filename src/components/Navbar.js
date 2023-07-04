@@ -10,18 +10,21 @@ const Navbar = (props) => {
         aboutMeButton.current.style.textDecoration = 'underline';
         projectsButton.current.style.textDecoration = 'none';
         clickerButton.current.style.textDecoration = 'none';
+        props.setVisible("about-me");
     }
 
     function projectsClicked() {
         aboutMeButton.current.style.textDecoration = 'none';
         projectsButton.current.style.textDecoration = 'underline';
         clickerButton.current.style.textDecoration = 'none';
+        props.setVisible("projects");
     }
 
     function clickerClicked() {
         aboutMeButton.current.style.textDecoration = 'none';
         projectsButton.current.style.textDecoration = 'none';
         clickerButton.current.style.textDecoration = 'underline';
+        props.setVisible("clicker");
     }
 
     return (
