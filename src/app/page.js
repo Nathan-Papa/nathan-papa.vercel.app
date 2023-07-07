@@ -8,7 +8,8 @@ import Socials from '../components/Socials';
 import React from 'react';
 
 export default function Home() {
-	const [visible, setVisible] = React.useState("about-me");
+	const [visible, setVisible] = React.useState("home");
+
   	return (
 		<html lang="en">
 			<head>
