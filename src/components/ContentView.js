@@ -3,6 +3,26 @@ import React from 'react';
 import Image from 'next/image'
 
 const ContentView = (props) => {
+    const [cannolis, setCannolis] = React.useState(0);
+    const [cps, setCPS] = React.useState(0);
+    const [cpc, setCPC] = React.useState(1);
+
+    const CannoliCount = (props) => {
+        return (<p className="text-[#FFFDE7] text-center text-xl">{props.cannolis} cannolis</p>);
+    }
+
+    const AutoCannoliCount = (props) => {
+        return (<p className="text-[#FFFDE7] text-center text-xl">{props.cps} cannolis per second</p>);
+    }
+
+    const CannoliClickCount = (props) => {
+        return (<p className="text-[#FFFDE7] text-center text-xl">{props.cpc} cannolis per click</p>);
+    }
+
+    function cannoliClick() {
+        setCannolis(cannolis + (1 * cpc));
+    }
+
     if (props.visible == "home") {
         return (
             <div className="flex w-[90%] h-[75%] justify-between items-center text-[#FFFDE7]">
@@ -52,7 +72,7 @@ const ContentView = (props) => {
                         </p>
                         <a href="https://github.com/Nathan-Papa/Projects/tree/main/JavaFX%20Calculator" target="_blank" className="self-end">
                             <Image
-                                src="/calc.png"
+                                src="/calc.jpg"
                                 alt="Calculator Icon"
                                 width={70}
                                 height={70}
@@ -64,8 +84,23 @@ const ContentView = (props) => {
         );
     } else {
         return (
-            <div className="flex w-full h-[75%] justify-around items-center text-[#42403C]">
-                <h1 className="text-5xl mb-[4%]">Clicker Game</h1>
+            <div className="flex flex-col w-full h-[80%] justify-between items-center text-[#42403C]">
+                <div className="h-[25%] flex flex-col justify-around">
+                    <h1 className="text-5xl text-[#FFFDE7]">Cannoli Clicker</h1>
+                    <div className="h-[45%] flex flex-col justify-between">
+                        <CannoliCount cannolis={cannolis} />
+                        <AutoCannoliCount cps={cps} />
+                        <CannoliClickCount cpc={cpc} />
+                    </div>
+                </div>
+                <Image
+                    onClick={cannoliClick}
+                    src="/cannoliIcon.png"
+                    alt="Cannoli to Click"
+                    width={250}
+                    height={250}
+                />
+                <div></div>
             </div>
         );
     }

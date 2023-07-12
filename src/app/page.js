@@ -14,10 +14,10 @@ export default function Home() {
 				<title>{`Nathan Papa's Personal Website`}</title>
 			</head>
 			<body>
-				<div className="flex px-48 h-screen flex-col items-center justify-between">
+				<div className="flex px-48 h-screen flex-col justify-between items-center">
 					<Navbar setVisible={setVisible} />
 					<ContentView visible={visible} />
-					<Socials />
+					<Socials visible={visible} />
 				</div>
 			</body>
 		</html>
