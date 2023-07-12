@@ -1,6 +1,3 @@
-// Red: #D13F3F
-// White: #FFFDE7
-// Dark Grey: #42403C
 'use client';
 import Navbar from '../components/Navbar';
 import ContentView from '../components/ContentView';

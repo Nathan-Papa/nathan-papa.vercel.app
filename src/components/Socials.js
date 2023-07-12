@@ -14,7 +14,7 @@ const Socials = (props) => {
                 />
             </a>
             <a href="/Nathan Papa Resume.pdf" download="Nathan_Papa_Resume" target="_blank">
-                <button className="text-[#FFFDE7] text-lg border-[2px] border-[#A8A9AD] py-[1px] px-[3px] rounded-md">Download my Resume</button>
+                <button className="text-[#FFFDE7] text-lg hover:border-[#FFFDE7] rounded-lg border-[2px] border-[#A8A9AD] py-[1px] px-[3px] rounded-md">Download my Resume</button>
             </a>
             <a href="https://github.com/Nathan-Papa" target="_blank">
                 <Image 
