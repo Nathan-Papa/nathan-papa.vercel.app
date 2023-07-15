@@ -84,7 +84,7 @@ const ContentView = (props) => {
                         </p>
                         <a href="https://github.com/Nathan-Papa/Projects/tree/main/JavaFX%20Calculator" target="_blank" className="self-end">
                             <Image
-                                src="/calc.jpg"
+                                src="/calc.png"
                                 alt="Calculator Icon"
                                 width={70}
                                 height={70}
