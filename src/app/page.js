@@ -16,8 +16,8 @@ export default function Home() {
 			<body>
 				<div className="flex px-48 h-screen flex-col justify-between items-center">
 					<Navbar setVisible={setVisible} />
-					<ContentView visible={visible} />
-					<Socials visible={visible} />
+					<ContentView visible={visible} setVisible={setVisible} />
+					<Socials visible={visible} setVisible={setVisible} />
 				</div>
 			</body>
 		</html>

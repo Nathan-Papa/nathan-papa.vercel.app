@@ -10,9 +10,13 @@ const Socials = (props) => {
             </a>);
         } else {
             return (
-                <button className="text-[#FFFDE7] text-lg hover:border-[#FFFDE7] rounded-lg border-[2px] border-[#A8A9AD] py-[1px] px-[3px] rounded-md">Store</button>
+                <button onClick={storeClick} className="text-[#FFFDE7] text-lg hover:border-[#FFFDE7] rounded-lg border-[2px] border-[#A8A9AD] py-[1px] px-[3px] rounded-md">Store</button>
             );
         }
+    }
+
+    function storeClick() {
+        props.setVisible("store");
     }
     
     return (
