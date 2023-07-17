@@ -1,11 +1,15 @@
 'use client';
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import Image from 'next/image'
 
 const ContentView = (props) => {
     const [cannolis, setCannolis] = React.useState(0);
     const [cps, setCPS] = React.useState(0);
     const [cpc, setCPC] = React.useState(1);
+    const [autoPrice, setAutoPrice] = React.useState(1);
+    const [doublePrice, setDoublePrice] = React.useState(100);
+    const [autoClickers, setAutoClickers] = React.useState(0);
+    const [doubleClicks, setDoubleClicks] = React.useState(0);
 
     const CannoliCount = (props) => {
         return (<p className="text-[#FFFDE7] text-center text-xl">{props.cannolis} cannolis</p>);
@@ -33,6 +37,28 @@ const ContentView = (props) => {
 
     function upgradesClick() {
         props.setVisible("upgrades");
+    }
+
+    function buyAuto() {
+        if (cannolis >= autoPrice) {
+            setCannolis(cannolis - autoPrice);
+            setAutoClickers(autoClickers + 1);
+            setCPS(cps + 1);
+            setAutoPrice(Math.round(autoPrice + 1.5 * Math.pow(autoClickers + 1, 1.5)));
+            const interval = setInterval(() => {
+                setCannolis(cannolis + 1);
+            }, 1000 / autoClickers);
+        }
+        
+    }
+
+    function buyDouble() {
+        if (cannolis >= doublePrice) {
+            setCannolis(cannolis - doublePrice);
+            setDoubleClicks(doubleClicks + 1);
+            setCPC(cpc * 2);
+            setDoublePrice(doublePrice * 100);
+        }
     }
 
     if (props.visible == "home") {
@@ -127,24 +153,24 @@ const ContentView = (props) => {
                     </div>
                 </div>
                 <div className="flex flex-col justify-between items-center w-[40%] h-[50%] text-[#FFFDE7] overflow-y-auto">
-                    <div className="flex justify-between h-[25%] w-full border-[#FFFDE7] border-[1px] rounded-md">
+                    <div className="flex justify-between min-h-[25%] w-full border-[#FFFDE7] border-[1px] rounded-md">
                         <div className="flex flex-col justify-around w-[60%] pl-[2%]">
-                            <p>0 Autoclicks</p>
+                            <p>{autoClickers} Autoclicks</p>
                             <p className="ml-[2%]">Each autoclick grants +1 cannolis per second.</p>
                         </div>
                         <div className="flex flex-col justify-around w-[60%] pl-[2%]">
-                            <button className="text-[#FFFDE7] w-[70%] text-lg hover:border-[#FFFDE7] mr-[2%] bg-[#680C07] border-[2px] border-[#A8A9AD] py-[1px] px-[3px] rounded-md self-center">Buy 1 Autoclick</button>
-                            <p className="self-center w-[70%] text-center">Price: 2 Cannoli</p>
+                            <button onClick={buyAuto} className="text-[#FFFDE7] max-w-[85%] text-lg hover:border-[#FFFDE7] mr-[2%] bg-[#680C07] border-[2px] border-[#A8A9AD] py-[1px] px-[3px] rounded-md self-center">Buy 1 Autoclick</button>
+                            <p className="self-center w-[70%] text-center">Price: {autoPrice} Cannoli</p>
                         </div>
                     </div>
-                    <div className="flex justify-between h-[25%] w-full border-[#FFFDE7] border-[1px] rounded-md">
+                    <div className="flex justify-between min-h-[25%] w-full border-[#FFFDE7] border-[1px] rounded-md">
                         <div className="flex flex-col justify-around w-[60%] pl-[2%]">
-                            <p>0 Double Clicks</p>
+                            <p>{doubleClicks} Double Clicks</p>
                             <p className="ml-[2%]">Each double click doubles your cannolis per click.</p>
                         </div>
                         <div className="flex flex-col justify-around w-[60%] pl-[2%]">
-                            <button className="text-[#FFFDE7] w-[70%] text-lg hover:border-[#FFFDE7] mr-[2%] bg-[#680C07] border-[2px] border-[#A8A9AD] py-[1px] px-[3px] rounded-md self-center">Buy 1 Autoclick</button>
-                            <p className="self-center w-[70%] text-center">Price: 2 Cannoli</p>
+                            <button onClick={buyDouble} className="text-[#FFFDE7] max-w-[85%] text-lg hover:border-[#FFFDE7] mr-[2%] bg-[#680C07] border-[2px] border-[#A8A9AD] py-[1px] px-[3px] rounded-md self-center">Buy 1 Double Click</button>
+                            <p className="self-center w-[70%] text-center">Price: {doublePrice} Cannoli</p>
                         </div>
                     </div>
                 </div>
