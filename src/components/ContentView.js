@@ -3,13 +3,23 @@ import React, { useState, useEffect } from 'react';
 import Image from 'next/image'
 
 const ContentView = (props) => {
-    const [cannolis, setCannolis] = React.useState(0);
-    const [cps, setCPS] = React.useState(0);
-    const [cpc, setCPC] = React.useState(1);
-    const [autoPrice, setAutoPrice] = React.useState(1);
-    const [doublePrice, setDoublePrice] = React.useState(100);
-    const [autoClickers, setAutoClickers] = React.useState(0);
-    const [doubleClicks, setDoubleClicks] = React.useState(0);
+    const [cannolis, setCannolis] = useState(0);
+    const [cps, setCPS] = useState(0);
+    const [cpc, setCPC] = useState(1);
+    const [autoPrice, setAutoPrice] = useState(1);
+    const [doublePrice, setDoublePrice] = useState(100);
+    const [autoClickers, setAutoClickers] = useState(0);
+    const [doubleClicks, setDoubleClicks] = useState(0);
+    const [storeWindow, setStoreWindow] = useState("buildings");
+    const [timer, setTimer] = useState(null);
+
+    useEffect(() => {
+        if (autoClickers != 0) {
+            setTimer(setInterval(() => {
+                setCannolis((current) => current + 1);
+            }, 1000 / autoClickers));
+        }
+    }, [autoClickers]);
 
     const CannoliCount = (props) => {
         return (<p className="text-[#FFFDE7] text-center text-xl">{props.cannolis} cannolis</p>);
@@ -24,7 +34,7 @@ const ContentView = (props) => {
     }
 
     function cannoliClick() {
-        setCannolis(cannolis + (1 * cpc));
+        setCannolis((current) => current + (1 * cpc));
     }
 
     function exitStoreClick() {
@@ -32,32 +42,33 @@ const ContentView = (props) => {
     }
 
     function buildingsClick() {
-        props.setVisible("buildings");
+        setStoreWindow("buildings");
     }
 
     function upgradesClick() {
-        props.setVisible("upgrades");
+        setStoreWindow("upgrades");
     }
 
     function buyAuto() {
         if (cannolis >= autoPrice) {
-            setCannolis(cannolis - autoPrice);
-            setAutoClickers(autoClickers + 1);
-            setCPS(cps + 1);
-            setAutoPrice(Math.round(autoPrice + 1.5 * Math.pow(autoClickers + 1, 1.5)));
-            const interval = setInterval(() => {
-                setCannolis(cannolis + 1);
-            }, 1000 / autoClickers);
+            setCannolis((current) => current - autoPrice);
+            setAutoClickers((current) => current + 1);
+            setCPS((current) => current + 1);
+            (current) => current + Math.round(1.5 * Math.pow(autoClickers + 1, 1.5))
+            setAutoPrice((current) => current + Math.round(1.5 * Math.pow(autoClickers + 1, 1.5)));
+            if (timer != null) {
+                clearInterval(timer);
+            }
         }
         
     }
 
     function buyDouble() {
         if (cannolis >= doublePrice) {
-            setCannolis(cannolis - doublePrice);
-            setDoubleClicks(doubleClicks + 1);
-            setCPC(cpc * 2);
-            setDoublePrice(doublePrice * 100);
+            setCannolis((current) => current - doublePrice);
+            setDoubleClicks((current) => current + 1);
+            setCPC((current) => current * 2);
+            setDoublePrice((current) => current * 100);
         }
     }
 
@@ -142,47 +153,69 @@ const ContentView = (props) => {
             </div>
         );
     } else if (props.visible == "store") {
-        return (
-            <div className="flex flex-col w-full h-[80%] justify-between items-center">
-                <div className="h-[25%] flex flex-col justify-around">
-                    <h1 className="text-5xl">Cannoli Clicker</h1>
-                    <div className="h-[45%] flex flex-col justify-between">
-                        <CannoliCount cannolis={cannolis} />
-                        <AutoCannoliCount cps={cps} />
-                        <CannoliClickCount cpc={cpc} />
+        if (storeWindow == "buildings") {
+            return (
+                <div className="flex flex-col w-full h-[80%] justify-between items-center">
+                    <div className="h-[25%] flex flex-col justify-around">
+                        <h1 className="text-5xl">Cannoli Clicker</h1>
+                        <div className="h-[45%] flex flex-col justify-between">
+                            <CannoliCount cannolis={cannolis} />
+                            <AutoCannoliCount cps={cps} />
+                            <CannoliClickCount cpc={cpc} />
+                        </div>
+                    </div>
+                    <div className="flex flex-col justify-between items-center w-[40%] h-[50%] text-[#FFFDE7] overflow-y-auto">
+                        <div className="flex justify-between min-h-[25%] w-full border-[#FFFDE7] border-[1px] rounded-md">
+                            <div className="flex flex-col justify-around w-[60%] pl-[2%]">
+                                <p>{autoClickers} Autoclicks</p>
+                                <p className="ml-[2%]">Each autoclick grants +1 cannolis per second.</p>
+                            </div>
+                            <div className="flex flex-col justify-around w-[60%] pl-[2%]">
+                                <button onClick={buyAuto} className="text-[#FFFDE7] max-w-[85%] text-lg hover:border-[#FFFDE7] mr-[2%] bg-[#680C07] border-[2px] border-[#A8A9AD] py-[1px] px-[3px] rounded-md self-center">Buy 1 Autoclick</button>
+                                <p className="self-center w-[70%] text-center">Price: {autoPrice} Cannoli</p>
+                            </div>
+                        </div>
+                        <div className="flex justify-between min-h-[25%] w-full border-[#FFFDE7] border-[1px] rounded-md">
+                            <div className="flex flex-col justify-around w-[60%] pl-[2%]">
+                                <p>{doubleClicks} Double Clicks</p>
+                                <p className="ml-[2%]">Each double click doubles your cannolis per click.</p>
+                            </div>
+                            <div className="flex flex-col justify-around w-[60%] pl-[2%]">
+                                <button onClick={buyDouble} className="text-[#FFFDE7] max-w-[85%] text-lg hover:border-[#FFFDE7] mr-[2%] bg-[#680C07] border-[2px] border-[#A8A9AD] py-[1px] px-[3px] rounded-md self-center">Buy 1 Double Click</button>
+                                <p className="self-center w-[70%] text-center">Price: {doublePrice} Cannoli</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div className="flex flex-col w-full h-[10%] items-center justify-between">
+                        <div className="flex w-[50%] justify-around items-center text-[#42403C]">
+                            <button onClick={buildingsClick} className="text-[#FFFDE7] text-lg hover:border-[#FFFDE7] bg-[#680C07] border-[2px] border-[#A8A9AD] py-[1px] px-[3px] rounded-md">Buildings</button>
+                            <button onClick={upgradesClick} className="text-[#FFFDE7] text-lg hover:border-[#FFFDE7] bg-[#680C07] border-[2px] border-[#A8A9AD] py-[1px] px-[3px] rounded-md">Upgrades</button>
+                        </div>
+                        <button onClick={exitStoreClick} className="text-[#FFFDE7] text-lg hover:border-[#FFFDE7] bg-[#680C07] border-[2px] border-[#A8A9AD] py-[1px] px-[3px] rounded-md">Exit Store</button>
                     </div>
                 </div>
-                <div className="flex flex-col justify-between items-center w-[40%] h-[50%] text-[#FFFDE7] overflow-y-auto">
-                    <div className="flex justify-between min-h-[25%] w-full border-[#FFFDE7] border-[1px] rounded-md">
-                        <div className="flex flex-col justify-around w-[60%] pl-[2%]">
-                            <p>{autoClickers} Autoclicks</p>
-                            <p className="ml-[2%]">Each autoclick grants +1 cannolis per second.</p>
-                        </div>
-                        <div className="flex flex-col justify-around w-[60%] pl-[2%]">
-                            <button onClick={buyAuto} className="text-[#FFFDE7] max-w-[85%] text-lg hover:border-[#FFFDE7] mr-[2%] bg-[#680C07] border-[2px] border-[#A8A9AD] py-[1px] px-[3px] rounded-md self-center">Buy 1 Autoclick</button>
-                            <p className="self-center w-[70%] text-center">Price: {autoPrice} Cannoli</p>
+            )
+        } else if (storeWindow == "upgrades") {
+            return (
+                <div className="flex flex-col w-full h-[80%] justify-between items-center">
+                    <div className="h-[25%] flex flex-col justify-around">
+                        <h1 className="text-5xl">Cannoli Clicker</h1>
+                        <div className="h-[45%] flex flex-col justify-between">
+                            <CannoliCount cannolis={cannolis} />
+                            <AutoCannoliCount cps={cps} />
+                            <CannoliClickCount cpc={cpc} />
                         </div>
                     </div>
-                    <div className="flex justify-between min-h-[25%] w-full border-[#FFFDE7] border-[1px] rounded-md">
-                        <div className="flex flex-col justify-around w-[60%] pl-[2%]">
-                            <p>{doubleClicks} Double Clicks</p>
-                            <p className="ml-[2%]">Each double click doubles your cannolis per click.</p>
+                    <div className="flex flex-col w-full h-[10%] items-center justify-between">
+                        <div className="flex w-[50%] justify-around items-center text-[#42403C]">
+                            <button onClick={buildingsClick} className="text-[#FFFDE7] text-lg hover:border-[#FFFDE7] bg-[#680C07] border-[2px] border-[#A8A9AD] py-[1px] px-[3px] rounded-md">Buildings</button>
+                            <button onClick={upgradesClick} className="text-[#FFFDE7] text-lg hover:border-[#FFFDE7] bg-[#680C07] border-[2px] border-[#A8A9AD] py-[1px] px-[3px] rounded-md">Upgrades</button>
                         </div>
-                        <div className="flex flex-col justify-around w-[60%] pl-[2%]">
-                            <button onClick={buyDouble} className="text-[#FFFDE7] max-w-[85%] text-lg hover:border-[#FFFDE7] mr-[2%] bg-[#680C07] border-[2px] border-[#A8A9AD] py-[1px] px-[3px] rounded-md self-center">Buy 1 Double Click</button>
-                            <p className="self-center w-[70%] text-center">Price: {doublePrice} Cannoli</p>
-                        </div>
+                        <button onClick={exitStoreClick} className="text-[#FFFDE7] text-lg hover:border-[#FFFDE7] bg-[#680C07] border-[2px] border-[#A8A9AD] py-[1px] px-[3px] rounded-md">Exit Store</button>
                     </div>
                 </div>
-                <div className="flex flex-col w-full h-[10%] items-center justify-between">
-                    <div className="flex w-[50%] justify-around items-center text-[#42403C]">
-                        <button onClick={buildingsClick} className="text-[#FFFDE7] text-lg hover:border-[#FFFDE7] bg-[#680C07] border-[2px] border-[#A8A9AD] py-[1px] px-[3px] rounded-md">Buildings</button>
-                        <button onClick={upgradesClick} className="text-[#FFFDE7] text-lg hover:border-[#FFFDE7] bg-[#680C07] border-[2px] border-[#A8A9AD] py-[1px] px-[3px] rounded-md">Upgrades</button>
-                    </div>
-                    <button onClick={exitStoreClick} className="text-[#FFFDE7] text-lg hover:border-[#FFFDE7] bg-[#680C07] border-[2px] border-[#A8A9AD] py-[1px] px-[3px] rounded-md">Exit Store</button>
-                </div>
-            </div>
-        )
+            )
+        }
     }
 }
 
