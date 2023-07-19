@@ -4,20 +4,20 @@ import React, { useEffect, useState } from 'react';
 const Building = (props) => {
 
     function buyCPSBuilding() {
-        if (props.cannolis >= props.price) {
-            props.setCannolis((current) => current - props.price);
+        if (props.cannoli >= props.price) {
+            props.setCannoli((current) => current - props.price);
             props.setCount((current) => current + 1);
             props.setCPS((current) => current + props.cpsModifier);
-            props.setPrice((current) => current + Math.round(props.priceScalar * Math.pow(props.count + 1, props.pricePower)));
+            props.setPrice();
         }
     }
 
     function buyCPCBuilding() {
-        if (props.cannolis >= props.price) {
-            props.setCannolis((current) => current - props.price);
+        if (props.cannoli >= props.price) {
+            props.setCannoli((current) => current - props.price);
             props.setCount((current) => current + 1);
             props.setCPC((current) => current * props.cpcModifier);
-            props.setPrice((current) => current + Math.round(props.priceScalar * Math.pow(props.count + 1, props.pricePower)));
+            props.setPrice();
         }
     }
 
@@ -25,7 +25,10 @@ const Building = (props) => {
         return (
             <div className="flex justify-between min-h-[25%] w-full border-[#FFFDE7] border-[1px] overflow-y-auto rounded-md">
                 <div className="flex flex-col justify-between w-[60%] pl-[2%] my-[2%]">
-                    <p>{`${props.count} ${props.name}s`}</p>
+                    {props.name.charAt(props.name.length - 1) == 'y' ? 
+                        props.count != 1 ? <p>{`${props.count} ${props.name.substring(0, props.name.length - 1)}ies`}</p> : <p>{`${props.count} ${props.name}`}</p> :
+                        props.count != 1 ? <p>{`${props.count} ${props.name}s`}</p> : <p>{`${props.count} ${props.name}`}</p>
+                    }
                     <p className="ml-[2%]">{props.description}</p>
                 </div>
                 <div className="flex flex-col justify-between w-[60%] pl-[2%] my-[2%]">
@@ -38,7 +41,7 @@ const Building = (props) => {
         return (
             <div className="flex justify-between min-h-[25%] w-full border-[#FFFDE7] border-[1px] overflow-y-auto rounded-md">
                 <div className="flex flex-col justify-between w-[60%] pl-[2%] my-[2%]">
-                    <p>{`${props.count} ${props.name}s`}</p>
+                    {props.count != 1 ? <p>{`${props.count} ${props.name}s`}</p> : <p>{`${props.count} ${props.name}`}</p>}
                     <p className="ml-[2%]">{props.description}</p>
                 </div>
                 <div className="flex flex-col justify-between w-[60%] pl-[2%] my-[2%]">
