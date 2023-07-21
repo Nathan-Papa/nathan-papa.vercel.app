@@ -9,6 +9,7 @@ const Upgrade = (props) => {
             props.setCannoli((current) => current - props.price);
             props.setCPSMultiplier((current) => current + props.cpsMultiplier);
             upgrade.current.style.display = "none";
+            props.setVisible(false);
         }
     }
 
@@ -17,6 +18,7 @@ const Upgrade = (props) => {
             props.setCannoli((current) => current - props.price);
             props.setCPCMultiplier((current) => current + props.cpcMultiplier);
             upgrade.current.style.display = "none";
+            props.setVisible(false);
         }
     }
 
@@ -28,10 +30,11 @@ const Upgrade = (props) => {
             const newCPS = props.cpsModifier * props.cpsMultiplier;
             props.setCPS((current) => current + (props.count * newCPS))
             upgrade.current.style.display = "none";
+            props.setVisible(false);
         }
     }
 
-    if (props.type == "cps") {
+    if (props.type == "cps" && props.visible == true) {
         return (
             <div ref={upgrade} className="flex justify-between min-h-[30%] w-full border-[#FFFDE7] border-[1px] rounded-md">
                 <div className="flex flex-col justify-between w-[60%] pl-[2%] my-[2%]">
@@ -44,7 +47,7 @@ const Upgrade = (props) => {
                 </div>
             </div>
         );
-    } else if (props.type == "cpc") {
+    } else if (props.type == "cpc" && props.visible == true) {
         return (
             <div ref={upgrade} className="flex justify-between min-h-[30%] w-full border-[#FFFDE7] border-[1px] rounded-md">
                 <div className="flex flex-col justify-between w-[60%] pl-[2%] my-[2%]">
@@ -57,7 +60,7 @@ const Upgrade = (props) => {
                 </div>
             </div>
         );
-    } else if (props.type == "boost") {
+    } else if (props.type == "boost" && props.visible == true) {
         return (
             <div ref={upgrade} className="flex justify-between min-h-[30%] w-full border-[#FFFDE7] border-[1px] rounded-md">
                 <div className="flex flex-col justify-between w-[60%] pl-[2%] my-[2%]">
