@@ -73,6 +73,12 @@ const Upgrade = (props) => {
                 </div>
             </div>
         );
+    } else if (props.type == "locked") {
+        return (
+            <div className="flex justify-center items-center min-h-[25%] w-full border-[#FFFDE7] border-[1px] overflow-y-auto rounded-md">
+                <p>Unlock this upgrade after gaining <b>{props.unlock}</b> total cannolis.</p>
+            </div>
+        );
     }
 }
 

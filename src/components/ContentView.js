@@ -5,7 +5,8 @@ import Building from './Building'
 import Upgrade from './Upgrade'
 
 const ContentView = (props) => {
-    const [cannoli, setCannoli] = useState(1000000000000);
+    const [cannoli, setCannoli] = useState(0);
+    const [totalCannoli, setTotalCannoli] = useState(0);
     const [cps, setCPS] = useState(0);
     const [cpc, setCPC] = useState(1);
     const [autoPrice, setAutoPrice] = useState(1);
@@ -51,6 +52,7 @@ const ContentView = (props) => {
         if (cps != 0) {
             setTimer(setInterval(() => {
                 setCannoli((current) => current + 1);
+                setTotalCannoli((current) => current + 1);
             }, 1000 / (cps * cpsMultiplier)));
         }
     }, [cps]);
@@ -69,6 +71,7 @@ const ContentView = (props) => {
 
     function cannoliClick() {
         setCannoli((current) => current + (cpcMultiplier * cpc));
+        setTotalCannoli((current) => current + (cpcMultiplier * cpc));
     }
 
     function buildingsClick() {
@@ -199,18 +202,18 @@ const ContentView = (props) => {
                         <Building type="cps" count={autoClickers} setCount={setAutoClickers} cannoli={cannoli} setCannoli={setCannoli} 
                             setCPS={setCPS} name="Auto Clicker" description="Each auto clicker clicks the cannoli once every second."
                             price={autoPrice} setPrice={changeAutoPrice} cpsModifier={autoClickCPS} />
-                        <Building type="cps" count={nonnas} setCount={setNonnas} cannoli={cannoli} setCannoli={setCannoli}
+                        {totalCannoli >= 20 ? <Building type="cps" count={nonnas} setCount={setNonnas} cannoli={cannoli} setCannoli={setCannoli}
                             setCPS={setCPS} name="Nonna" description="Hire a nonna to bake cannoli."
-                            price={nonnaPrice} setPrice={changeNonnaPrice} cpsModifier={nonnaCPS} />
-                        <Building type="cps" count={stands} setCount={setStands} cannoli={cannoli} setCannoli={setCannoli}
+                            price={nonnaPrice} setPrice={changeNonnaPrice} cpsModifier={nonnaCPS} /> : <Building type="locked" unlock={20} />}
+                        {totalCannoli >= 250 ? <Building type="cps" count={stands} setCount={setStands} cannoli={cannoli} setCannoli={setCannoli}
                             setCPS={setCPS} name="Stand" description="Send a cannoli stand to the streets to tempt tourists."
-                            price={standPrice} setPrice={changeStandPrice} cpsModifier={standCPS} />
-                        <Building type="cps" count={bakeries} setCount={setBakeries} cannoli={cannoli} setCannoli={setCannoli}
+                            price={standPrice} setPrice={changeStandPrice} cpsModifier={standCPS} /> : <Building type="locked" unlock={250} />}
+                        {totalCannoli >= 500 ? <Building type="cps" count={bakeries} setCount={setBakeries} cannoli={cannoli} setCannoli={setCannoli}
                             setCPS={setCPS} name="Bakery" description="Each bakery sells lots of cannoli."
-                            price={bakeryPrice} setPrice={changeBakeryPrice} cpsModifier={bakeryCPS} />
-                        <Building type="cpc" count={doubleClicks} setCount={setDoubleClicks} cannoli={cannoli} setCannoli={setCannoli}
+                            price={bakeryPrice} setPrice={changeBakeryPrice} cpsModifier={bakeryCPS} /> : <Building type="locked" unlock={500} />}
+                        {totalCannoli >= 500 ? <Building type="cpc" count={doubleClicks} setCount={setDoubleClicks} cannoli={cannoli} setCannoli={setCannoli}
                             setCPC={setCPC} name="Double Click" description="Each double click doubles your cannoli per click."
-                            price={doublePrice} setPrice={changeDoublePrice} cpcModifier={2} />
+                            price={doublePrice} setPrice={changeDoublePrice} cpcModifier={2} /> : <Building type="locked" unlock={500} />}
                     </div>
                     <div className="flex w-[40%] justify-evenly items-center text-[#42403C] border-[#FFFDE7] p-[1%] border-[2px] rounded-lg">
                         <button onClick={buildingsClick} className="text-[#FFFDE7] text-lg max-w-[20%] w-[17%] hover:border-[#FFFDE7] bg-[#680C07] border-[2px] border-[#A8A9AD] py-[1px] px-[3px] rounded-md">Buildings</button>
@@ -231,61 +234,95 @@ const ContentView = (props) => {
                         </div>
                     </div>
                     <div className="flex flex-col justify-between items-center w-[40%] h-[60%] text-[#FFFDE7] overflow-y-auto border-[#FFFDE7] p-[1%] border-[2px] rounded-lg">
-                        {vanillaVisible && (<Upgrade type="cps" cannoli={cannoli} setCannoli={setCannoli} setCPSMultiplier={setCPSMultiplier}
+                        {totalCannoli >= 125 ? 
+                            vanillaVisible && <Upgrade type="cps" cannoli={cannoli} setCannoli={setCannoli} setCPSMultiplier={setCPSMultiplier}
                             name="Vanilla Cannoli" description="Your taskforce can now bake vanilla cannoli, increasing your cannoli per second by 2%."
-                            price={100} cpsMultiplier={.02} visible={vanillaVisible} setVisible={setVanillaVisible} />)}
-                        {strawberryVisible && <Upgrade type="cps" cannoli={cannoli} setCannoli={setCannoli} setCPSMultiplier={setCPSMultiplier}
+                            price={100} cpsMultiplier={.02} visible={vanillaVisible} setVisible={setVanillaVisible} /> :
+                            <Upgrade type="locked" unlock={125}/>}
+                        {totalCannoli >= 175 ?
+                            strawberryVisible && <Upgrade type="cps" cannoli={cannoli} setCannoli={setCannoli} setCPSMultiplier={setCPSMultiplier}
                             name="Strawberry Cannoli" description="Your taskforce can now bake strawberry cannoli, increasing your cannoli per second by 2%."
-                            price={150} cpsMultiplier={.02} visible={strawberryVisible} setVisible={setStrawberryVisible} />}
-                        {lemonVisible && <Upgrade type="cps" cannoli={cannoli} setCannoli={setCannoli} setCPSMultiplier={setCPSMultiplier}
-                            name="Lemon Cannoli" description="Your taskforce can now bake lemon cannoli, increasing your cannoli per second by 5%."
-                            price={1000} cpsMultiplier={.05} visible={lemonVisible} setVisible={setLemonVisible} />}
-                        {mangoVisible && <Upgrade type="cps" cannoli={cannoli} setCannoli={setCannoli} setCPSMultiplier={setCPSMultiplier}
-                            name="Mango Cannoli" description="Your taskforce can now bake mango cannoli, increasing your cannoli per second by 5%."
-                            price={1500} cpsMultiplier={.05} visible={mangoVisible} setVisible={setMangoVisible} />}
-                        {chocolateVisible && <Upgrade type="cps" cannoli={cannoli} setCannoli={setCannoli} setCPSMultiplier={setCPSMultiplier}
-                            name="Chocolate Cannoli" description="Your taskforce can now bake chocolate cannoli, increasing your cannoli per second by 10%."
-                            price={5000} cpsMultiplier={.1} visible={chocolateVisible} setVisible={setChocolateVisible} />}
-                        {doubleClickersVisible && <Upgrade type="boost" cannoli={cannoli} setCannoli={setCannoli} setCPS={setCPS} count={autoClickers}
+                            price={150} cpsMultiplier={.02} visible={strawberryVisible} setVisible={setStrawberryVisible} /> :
+                            <Upgrade type="locked" unlock={175}/>}
+                        {totalCannoli >= 300 ?
+                            cursor1Visible && <Upgrade type="cpc" cannoli={cannoli} setCannoli={setCannoli} setCPCMultiplier={setCPCMultiplier}
+                            name="Iron Cursor" description="Your clicks are now fortified by iron, producing a 2% increase in cannoli per click."
+                            price={150} cpcMultiplier={.02} visible={cursor1Visible} setVisible={setCursor1Visible} /> :
+                            <Upgrade type="locked" unlock={300}/>}
+                        {totalCannoli >= 500 ?
+                            doubleClickersVisible && <Upgrade type="boost" cannoli={cannoli} setCannoli={setCannoli} setCPS={setCPS} count={autoClickers}
                             name="Double Auto Clickers" description="Your auto clickers now click twice a second."
                             price={200} cpsModifier={autoClickCPS} setCPSModifier={setAutoClickCPS} cpsMultiplier={2}
-                            visible={doubleClickersVisible} setVisible={setDoubleClickersVisible} />}
-                        {superNonnasVisible && <Upgrade type="boost" cannoli={cannoli} setCannoli={setCannoli} setCPS={setCPS} count={nonnas}
+                            visible={doubleClickersVisible} setVisible={setDoubleClickersVisible} /> :
+                            <Upgrade type="locked" unlock={500}/>}
+                        {totalCannoli >= 750 ?
+                            cursor2Visible && <Upgrade type="cpc" cannoli={cannoli} setCannoli={setCannoli} setCPCMultiplier={setCPCMultiplier}
+                            name="Steel Cursor" description="Your clicks are now fortified by steel, producing a 3% increase in cannoli per click."
+                            price={300} cpcMultiplier={.03} visible={cursor2Visible} setVisible={setCursor2Visible} /> :
+                            <Upgrade type="locked" unlock={750}/>}
+                        {totalCannoli >= 1500 ?
+                            superNonnasVisible && <Upgrade type="boost" cannoli={cannoli} setCannoli={setCannoli} setCPS={setCPS} count={nonnas}
                             name="Super Nonnas" description="Your nonnas bake twice as fast as before."
-                            price={500} cpsModifier={nonnaCPS} setCPSModifier={setNonnaCPS} cpsMultiplier={2} visible={superNonnasVisible} setVisible={setSuperNonnasVisible} />}
-                        {mesVisible && <Upgrade type="boost" cannoli={cannoli} setCannoli={setCannoli} setCPS={setCPS} count={stands}
+                            price={500} cpsModifier={nonnaCPS} setCPSModifier={setNonnaCPS} cpsMultiplier={2} visible={superNonnasVisible} setVisible={setSuperNonnasVisible} /> :
+                            <Upgrade type="locked" unlock={1500}/>}
+                        {totalCannoli >= 2000 ?
+                            lemonVisible && <Upgrade type="cps" cannoli={cannoli} setCannoli={setCannoli} setCPSMultiplier={setCPSMultiplier}
+                            name="Lemon Cannoli" description="Your taskforce can now bake lemon cannoli, increasing your cannoli per second by 5%."
+                            price={1000} cpsMultiplier={.05} visible={lemonVisible} setVisible={setLemonVisible} /> :
+                            <Upgrade type="locked" unlock={2000}/>}
+                        {totalCannoli >= 2000 ?
+                            cursor3Visible && <Upgrade type="cpc" cannoli={cannoli} setCannoli={setCannoli} setCPCMultiplier={setCPCMultiplier}
+                            name="Gold Cursor" description="Your clicks are fortified by gold, producing a 3% increase in cannoli per click."
+                            price={750} cpcMultiplier={.03} visible={cursor3Visible} setVisible={setCursor3Visible} /> :
+                            <Upgrade type="locked" unlock={2000}/>}
+                        {totalCannoli >= 2500 ?
+                            mesVisible && <Upgrade type="boost" cannoli={cannoli} setCannoli={setCannoli} setCPS={setCPS} count={stands}
                             name="More Enticing Stands" description="Your stands attract twice the tourists."
-                            price={1000} cpsModifier={standCPS} setCPSModifier={setStandCPS} cpsMultiplier={2} visible={mesVisible} setVisible={setMESVisible} />}
-                        {msbVisible && <Upgrade type="boost" cannoli={cannoli} setCannoli={setCannoli} setCPS={setCPS} count={bakeries}
-                            name="Michelin Star Bakeries" description="Your bakeries now sell twice as many cannolis."
-                            price={5000} cpsModifier={bakeryCPS} setCPSModifier={setBakeryCPS} cpsMultiplier={2} visible={msbVisible} setVisible={setMSBVisible} />}
-                        {best1Visible && <Upgrade type="cpc" cannoli={cannoli} setCannoli={setCannoli} setCPCMultiplier={setCPCMultiplier}
+                            price={1000} cpsModifier={standCPS} setCPSModifier={setStandCPS} cpsMultiplier={2} visible={mesVisible} setVisible={setMESVisible} /> :
+                            <Upgrade type="locked" unlock={2500}/>}
+                        {totalCannoli >= 2500 ?
+                            best1Visible && <Upgrade type="cpc" cannoli={cannoli} setCannoli={setCannoli} setCPCMultiplier={setCPCMultiplier}
                             name="Best in Town" description="Your cannoli are named the best in town, causing your 
                             clicks to be boosted by 5% of your cannoli per second."
-                            price={1000} cpcMultiplier={.05 * cps} visible={best1Visible} setVisible={setBest1Visible} />}
-                        {best2Visible && <Upgrade type="cpc" cannoli={cannoli} setCannoli={setCannoli} setCPCMultiplier={setCPCMultiplier}
+                            price={1000} cpcMultiplier={.05 * cps} visible={best1Visible} setVisible={setBest1Visible} /> :
+                            <Upgrade type="locked" unlock={2500}/>}
+                        {totalCannoli >= 3000 ?
+                            mangoVisible && <Upgrade type="cps" cannoli={cannoli} setCannoli={setCannoli} setCPSMultiplier={setCPSMultiplier}
+                            name="Mango Cannoli" description="Your taskforce can now bake mango cannoli, increasing your cannoli per second by 5%."
+                            price={1500} cpsMultiplier={.05} visible={mangoVisible} setVisible={setMangoVisible} /> :
+                            <Upgrade type="locked" unlock={3000}/>}
+                        {totalCannoli >= 5000 ?
+                            cursor4Visible && <Upgrade type="cpc" cannoli={cannoli} setCannoli={setCannoli} setCPCMultiplier={setCPCMultiplier}
+                            name="Platinum Cursor" description="Your clicks are fortified by platinum, producing a 5% increase in cannoli per click."
+                            price={1750} cpcMultiplier={.05} visible={cursor4Visible} setVisible={setCursor4Visible} /> :
+                            <Upgrade type="locked" unlock={5000}/>}
+                        {totalCannoli >= 10000 ?
+                            msbVisible && <Upgrade type="boost" cannoli={cannoli} setCannoli={setCannoli} setCPS={setCPS} count={bakeries}
+                            name="Michelin Star Bakeries" description="Your bakeries now sell twice as many cannolis."
+                            price={5000} cpsModifier={bakeryCPS} setCPSModifier={setBakeryCPS} cpsMultiplier={2} visible={msbVisible} setVisible={setMSBVisible} /> :
+                            <Upgrade type="locked" unlock={10000}/>}
+                        {totalCannoli >= 10000 ?
+                            best2Visible && <Upgrade type="cpc" cannoli={cannoli} setCannoli={setCannoli} setCPCMultiplier={setCPCMultiplier}
                             name="Best in Italy" description="Your cannoli are granted the award of best in Italy, causing 
                             your clicks to be boosted by 5% of your cannoli per second."
-                            price={5000} cpcMultiplier={.05 * cps} visible={best2Visible} setVisible={setBest2Visible} />}
-                        {best3Visible && <Upgrade type="cpc" cannoli={cannoli} setCannoli={setCannoli} setCPCMultiplier={setCPCMultiplier}
+                            price={5000} cpcMultiplier={.05 * cps} visible={best2Visible} setVisible={setBest2Visible} /> :
+                            <Upgrade type="locked" unlock={10000}/>}
+                        {totalCannoli >= 12500 ?
+                            cursor5Visible && <Upgrade type="cpc" cannoli={cannoli} setCannoli={setCannoli} setCPCMultiplier={setCPCMultiplier}
+                            name="Diamond Cursor" description="Your clicks are fortified by diamond, producing a 10% increase in cannoli per click."
+                            price={5000} cpcMultiplier={.1} visible={cursor5Visible} setVisible={setCursor5Visible} /> :
+                            <Upgrade type="locked" unlock={12500}/>}
+                        {totalCannoli >= 15000 ?
+                            chocolateVisible && <Upgrade type="cps" cannoli={cannoli} setCannoli={setCannoli} setCPSMultiplier={setCPSMultiplier}
+                            name="Chocolate Cannoli" description="Your taskforce can now bake chocolate cannoli, increasing your cannoli per second by 10%."
+                            price={5000} cpsMultiplier={.1} visible={chocolateVisible} setVisible={setChocolateVisible} /> :
+                            <Upgrade type="locked" unlock={15000}/>}
+                        {totalCannoli >= 30000 ?
+                            best3Visible && <Upgrade type="cpc" cannoli={cannoli} setCannoli={setCannoli} setCPCMultiplier={setCPCMultiplier}
                             name="Best in the World" description="Your cannoli are famous for being the best in the world. 
                             Your clicks are boosted by 10% of your cannoli per second."
-                            price={15000} cpcMultiplier={.1 * cps} visible={best3Visible} setVisible={setBest3Visible} />}
-                        {cursor1Visible && <Upgrade type="cpc" cannoli={cannoli} setCannoli={setCannoli} setCPCMultiplier={setCPCMultiplier}
-                            name="Iron Cursor" description="Your clicks are now fortified by iron, producing a 2% increase in cannoli per click."
-                            price={150} cpcMultiplier={.02} visible={cursor1Visible} setVisible={setCursor1Visible} />}
-                        {cursor2Visible && <Upgrade type="cpc" cannoli={cannoli} setCannoli={setCannoli} setCPCMultiplier={setCPCMultiplier}
-                            name="Steel Cursor" description="Your clicks are now fortified by steel, producing a 3% increase in cannoli per click."
-                            price={300} cpcMultiplier={.03} visible={cursor2Visible} setVisible={setCursor2Visible} />}
-                        {cursor3Visible && <Upgrade type="cpc" cannoli={cannoli} setCannoli={setCannoli} setCPCMultiplier={setCPCMultiplier}
-                            name="Gold Cursor" description="Your clicks are fortified by gold, producing a 3% increase in cannoli per click."
-                            price={750} cpcMultiplier={.03} visible={cursor3Visible} setVisible={setCursor3Visible} />}
-                        {cursor4Visible && <Upgrade type="cpc" cannoli={cannoli} setCannoli={setCannoli} setCPCMultiplier={setCPCMultiplier}
-                            name="Platinum Cursor" description="Your clicks are fortified by platinum, producing a 5% increase in cannoli per click."
-                            price={1750} cpcMultiplier={.05} visible={cursor4Visible} setVisible={setCursor4Visible} />}
-                        {cursor5Visible && <Upgrade type="cpc" cannoli={cannoli} setCannoli={setCannoli} setCPCMultiplier={setCPCMultiplier}
-                            name="Diamond Cursor" description="Your clicks are fortified by diamond, producing a 10% increase in cannoli per click."
-                            price={5000} cpcMultiplier={.1} visible={cursor5Visible} setVisible={setCursor5Visible} />}
+                            price={15000} cpcMultiplier={.1 * cps} visible={best3Visible} setVisible={setBest3Visible} /> :
+                            <Upgrade type="locked" unlock={30000}/>}
                     </div>
                     <div className="flex w-[40%] justify-evenly items-center text-[#42403C] border-[#FFFDE7] p-[1%] border-[2px] rounded-lg">
                         <button onClick={buildingsClick} className="text-[#FFFDE7] text-lg max-w-[20%] w-[17%] hover:border-[#FFFDE7] bg-[#680C07] border-[2px] border-[#A8A9AD] py-[1px] px-[3px] rounded-md">Buildings</button>
