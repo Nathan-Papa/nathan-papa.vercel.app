@@ -53,7 +53,7 @@ const Building = (props) => {
     } else if (props.type == "locked") {
         return (
             <div className="flex justify-center items-center min-h-[25%] w-full border-[#FFFDE7] border-[1px] overflow-y-auto rounded-md">
-                <p>Unlock this building after gaining <b>{props.unlock}</b> total cannolis.</p>
+                <p>Unlock this building after gaining <u>{props.unlock}</u> total cannolis.</p>
             </div>
         );
     }

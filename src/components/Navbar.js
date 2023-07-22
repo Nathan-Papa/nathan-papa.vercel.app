@@ -18,7 +18,7 @@ const Navbar = (props) => {
     }
 
     return (
-        <div className="flex w-full h-[7%] justify-around items-center bg-[#680C07] text-[#FFFDE7] border-[2px] border-[#A8A9AD] rounded-b-lg">
+        <div className="flex max-w-full min-w-[50%] min-h-[3.5%] w-full h-[7%] justify-around items-center bg-[#680C07] text-[#FFFDE7] border-[2px] border-[#A8A9AD] rounded-b-lg">
             <button ref={homeButton} onClick={homeClick} className="text-2xl underline h-full hover:border-[#FFFDE7] border-2 rounded-lg border-transparent">Home</button>
             <button ref={clickerButton} onClick={clickerClick} className="text-2xl h-full hover:border-[#FFFDE7] border-2 rounded-lg border-transparent">Clicker Game</button>
         </div>
