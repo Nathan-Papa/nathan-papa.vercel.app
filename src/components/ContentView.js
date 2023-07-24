@@ -111,7 +111,8 @@ const ContentView = (props) => {
             <div className="flex w-[90%] h-[75%] justify-between items-center text-[#FFFDE7]">
                 <div className="flex flex-col h-[80%] self-center justify-between w-[45%] border-[#FFFDE7] border-[2px] overflow-y-auto rounded-lg p-[2%]">
                     <h1 className="text-5xl">Nathan Papa</h1>
-                    <p className="ml-[2%] mt-[4%]">
+                    <hr className="my-[2%]"/>
+                    <p className="ml-[2%] mt-[2%]">
                         {`I'm an aspiring software engineer, currently a second-year student
                         studying computer science at Georgia Tech. My passion for computer
                         science always stemmed from my enjoyment for playing video games
@@ -133,6 +134,7 @@ const ContentView = (props) => {
                 <div className="flex flex-col h-full w-[40%] justify-around">
                     <div className="w-[80%] h-[40%] flex flex-col justify-between border-[#FFFDE7] border-[2px] rounded-lg p-[2%] overflow-auto">
                         <h3 className="text-xl self-center">Python Minesweeper</h3>
+                        <hr className="mb-[2%] mt-[1%]"/>
                         <p className="text-lg self-start w-[85%] ml-[2%]">
                             {`I wanted to try the python turtle module so I decided to
                             create a python reboot of a classic video game: Minesweeper.
@@ -148,7 +150,8 @@ const ContentView = (props) => {
                         </a>
                     </div>
                     <div className="w-[80%] h-[40%] flex flex-col self-end justify-between border-[#FFFDE7] border-[2px] rounded-lg p-[2%] overflow-auto">
-                    <h3 className="text-xl self-center">JavaFX Calculator</h3>
+                        <h3 className="text-xl self-center">JavaFX Calculator</h3>
+                        <hr className="mb-[2%]"/>
                         <p className="text-lg self-start w-[85%] ml-[2%]">
                             {`I wanted to create a GUI using Java as I had just learned Java, 
                             and I decided to try and create a calculator. Click the icon for the github.`}
@@ -198,27 +201,27 @@ const ContentView = (props) => {
                             <CannoliClickCount cpc={cpc} cpcMultiplier={cpcMultiplier} />
                         </div>
                     </div>
-                    <div className="flex flex-col justify-between items-center w-[50%] h-[60%] text-[#FFFDE7] overflow-y-auto border-[#FFFDE7] p-[1%] border-[2px] rounded-lg">
+                    <div className="flex flex-col justify-between items-center min-w-[50%] max-w-[70%] h-[60%] text-[#FFFDE7] overflow-y-auto border-[#FFFDE7] p-[1%] border-[2px] rounded-lg">
                         <Building type="cps" count={autoClickers} setCount={setAutoClickers} cannoli={cannoli} setCannoli={setCannoli} 
                             setCPS={setCPS} name="Auto Clicker" description="Each auto clicker clicks the cannoli once every second."
                             price={autoPrice} setPrice={changeAutoPrice} cpsModifier={autoClickCPS} />
-                        {totalCannoli >= 20 ? <Building type="cps" count={nonnas} setCount={setNonnas} cannoli={cannoli} setCannoli={setCannoli}
+                        {totalCannoli >= 50 ? <Building type="cps" count={nonnas} setCount={setNonnas} cannoli={cannoli} setCannoli={setCannoli}
                             setCPS={setCPS} name="Nonna" description="Hire a nonna to bake cannoli."
-                            price={nonnaPrice} setPrice={changeNonnaPrice} cpsModifier={nonnaCPS} /> : <Building type="locked" unlock={20} />}
+                            price={nonnaPrice} setPrice={changeNonnaPrice} cpsModifier={nonnaCPS} /> : <Building type="locked" unlock={50} />}
                         {totalCannoli >= 250 ? <Building type="cps" count={stands} setCount={setStands} cannoli={cannoli} setCannoli={setCannoli}
                             setCPS={setCPS} name="Stand" description="Send a cannoli stand to the streets to tempt tourists."
                             price={standPrice} setPrice={changeStandPrice} cpsModifier={standCPS} /> : <Building type="locked" unlock={250} />}
-                        {totalCannoli >= 500 ? <Building type="cps" count={bakeries} setCount={setBakeries} cannoli={cannoli} setCannoli={setCannoli}
+                        {totalCannoli >= 1500 ? <Building type="cps" count={bakeries} setCount={setBakeries} cannoli={cannoli} setCannoli={setCannoli}
                             setCPS={setCPS} name="Bakery" description="Each bakery sells lots of cannoli."
-                            price={bakeryPrice} setPrice={changeBakeryPrice} cpsModifier={bakeryCPS} /> : <Building type="locked" unlock={500} />}
-                        {totalCannoli >= 500 ? <Building type="cpc" count={doubleClicks} setCount={setDoubleClicks} cannoli={cannoli} setCannoli={setCannoli}
+                            price={bakeryPrice} setPrice={changeBakeryPrice} cpsModifier={bakeryCPS} /> : <Building type="locked" unlock={1500} />}
+                        {totalCannoli >= 1000 ? <Building type="cpc" count={doubleClicks} setCount={setDoubleClicks} cannoli={cannoli} setCannoli={setCannoli}
                             setCPC={setCPC} name="Double Click" description="Each double click doubles your cannoli per click."
-                            price={doublePrice} setPrice={changeDoublePrice} cpcModifier={2} /> : <Building type="locked" unlock={500} />}
+                            price={doublePrice} setPrice={changeDoublePrice} cpcModifier={2} /> : <Building type="locked" unlock={1000} />}
                     </div>
-                    <div className="flex w-[50%] justify-evenly items-center text-[#42403C] border-[#FFFDE7] p-[1%] border-[2px] rounded-lg">
-                        <button onClick={buildingsClick} className="text-[#FFFDE7] text-lg max-w-[20%] w-[17%] hover:border-[#FFFDE7] bg-[#680C07] border-[2px] border-[#A8A9AD] py-[1px] px-[3px] rounded-md">Buildings</button>
-                        <button onClick={upgradesClick} className="text-[#FFFDE7] text-lg max-w-[20%] w-[17%]hover:border-[#FFFDE7] bg-[#680C07] border-[2px] border-[#A8A9AD] py-[1px] px-[3px] rounded-md">Upgrades</button>
-                        <button onClick={statsClick} className="text-[#FFFDE7] text-lg hover:border-[#FFFDE7] max-w-[20%] w-[17%] bg-[#680C07] border-[2px] border-[#A8A9AD] py-[1px] px-[3px] rounded-md">Stats</button>
+                    <div className="flex min-w-[50%] max-w-[70%] justify-evenly items-center text-[#42403C] border-[#FFFDE7] p-[1%] border-[2px] rounded-lg">
+                        <button onClick={buildingsClick} className="text-[#FFFDE7] text-lg overflow-auto max-w-[20%] w-[17%] hover:border-[#FFFDE7] bg-[#680C07] border-[2px] border-[#A8A9AD] py-[1px] px-[3px] rounded-md">Buildings</button>
+                        <button onClick={upgradesClick} className="text-[#FFFDE7] text-lg overflow-auto max-w-[20%] w-[17%] hover:border-[#FFFDE7] bg-[#680C07] border-[2px] border-[#A8A9AD] py-[1px] px-[3px] rounded-md">Upgrades</button>
+                        <button onClick={statsClick} className="text-[#FFFDE7] text-lg overflow-auto hover:border-[#FFFDE7] max-w-[20%] w-[17%] bg-[#680C07] border-[2px] border-[#A8A9AD] py-[1px] px-[3px] rounded-md">Stats</button>
                     </div>
                 </div>
             )

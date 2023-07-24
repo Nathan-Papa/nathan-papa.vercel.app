@@ -42,7 +42,7 @@ const Upgrade = (props) => {
                     <p className="ml-[2%]">{props.description}</p>
                 </div>
                 <div className="flex flex-col justify-between w-[60%] pl-[2%] my-[2%]">
-                    <button onClick={buyCPSUpgrade} className="text-[#FFFDE7] max-w-[85%] text-lg hover:border-[#FFFDE7] mr-[2%] bg-[#680C07] border-[2px] border-[#A8A9AD] py-[1px] px-[3px] rounded-md self-center">Enable {props.name}</button>
+                    <button onClick={buyCPSUpgrade} className="text-[#FFFDE7] max-w-[85%] text-lg hover:border-[#FFFDE7] mr-[2%] bg-[#680C07] border-[2px] border-[#A8A9AD] py-[1px] px-[5px] rounded-md self-center">Upgrade</button>
                     <p className="self-center w-[70%] text-center">Price: {props.price} Cannoli</p>
                 </div>
             </div>
@@ -55,7 +55,7 @@ const Upgrade = (props) => {
                     <p className="ml-[2%]">{props.description}</p>
                 </div>
                 <div className="flex flex-col justify-between w-[60%] pl-[2%] my-[2%]">
-                    <button onClick={buyCPCUpgrade} className="text-[#FFFDE7] max-w-[85%] text-lg hover:border-[#FFFDE7] mr-[2%] bg-[#680C07] border-[2px] border-[#A8A9AD] py-[1px] px-[3px] rounded-md self-center">Enable {props.name}</button>
+                    <button onClick={buyCPCUpgrade} className="text-[#FFFDE7] max-w-[85%] text-lg hover:border-[#FFFDE7] mr-[2%] bg-[#680C07] border-[2px] border-[#A8A9AD] py-[1px] px-[5px] rounded-md self-center">Upgrade</button>
                     <p className="self-center w-[70%] text-center">Price: {props.price} Cannoli</p>
                 </div>
             </div>
@@ -68,7 +68,7 @@ const Upgrade = (props) => {
                     <p className="ml-[2%]">{props.description}</p>
                 </div>
                 <div className="flex flex-col justify-between w-[60%] pl-[2%] my-[2%]">
-                    <button onClick={buyBoostUpgrade} className="text-[#FFFDE7] max-w-[85%] text-lg hover:border-[#FFFDE7] mr-[2%] bg-[#680C07] border-[2px] border-[#A8A9AD] py-[1px] px-[3px] rounded-md self-center">Enable {props.name}</button>
+                    <button onClick={buyBoostUpgrade} className="text-[#FFFDE7] max-w-[85%] text-lg hover:border-[#FFFDE7] mr-[2%] bg-[#680C07] border-[2px] border-[#A8A9AD] py-[1px] px-[5px] rounded-md self-center">Upgrade</button>
                     <p className="self-center w-[70%] text-center">Price: {props.price} Cannoli</p>
                 </div>
             </div>
