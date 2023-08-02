@@ -9,7 +9,7 @@ const Upgrade = (props) => {
             props.setCannoli((current) => current - props.price);
             props.setCPSMultiplier((current) => current + props.cpsMultiplier);
             upgrade.current.style.display = "none";
-            props.setVisible(false);
+            props.setVisible();
         }
     }
 
@@ -18,20 +18,13 @@ const Upgrade = (props) => {
             props.setCannoli((current) => current - props.price);
             props.setCPCMultiplier((current) => current + props.cpcMultiplier);
             upgrade.current.style.display = "none";
-            props.setVisible(false);
+            props.setVisible();
         }
     }
 
     function buyBoostUpgrade() {
-        if (props.cannoli >= props.price) {
-            props.setCannoli((current) => current - props.price);
-            props.setCPS((current) => current - (props.count * props.cpsModifier))
-            props.setCPSModifier((current) => current * props.cpsMultiplier);
-            const newCPS = props.cpsModifier * props.cpsMultiplier;
-            props.setCPS((current) => current + (props.count * newCPS))
-            upgrade.current.style.display = "none";
-            props.setVisible(false);
-        }
+        props.buyUpgrade();
+        upgrade.current.style.display = "none";
     }
 
     if (props.type == "cps" && props.visible == true) {
