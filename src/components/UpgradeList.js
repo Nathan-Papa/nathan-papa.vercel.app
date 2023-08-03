@@ -102,7 +102,7 @@ const UpgradeList = (props) => {
                 <Upgrade type="locked" unlock={2000}/>}
             {props.totalCannoli >= 2500 ?
                 props.upgradesVisible.mesVisible && <Upgrade type="boost" name="More Enticing Stands" description="Your stands attract twice the tourists."
-                buyBuilding={buyMES} price={1000} visible={props.upgradesVisible.mesVisible}/> :
+                buyUpgrade={buyMES} price={1000} visible={props.upgradesVisible.mesVisible} /> :
                 <Upgrade type="locked" unlock={2500}/>}
             {props.totalCannoli >= 2500 ?
                 props.upgradesVisible.best1Visible && <Upgrade type="cpc" cannoli={props.cannoli} setCannoli={props.setCannoli} setCPCMultiplier={props.setCPCMultiplier}
@@ -122,7 +122,7 @@ const UpgradeList = (props) => {
                 <Upgrade type="locked" unlock={5000}/>}
             {props.totalCannoli >= 10000 ?
                 props.upgradesVisible.msbVisible && <Upgrade type="boost" name="Michelin Star Bakeries" description="Your bakeries now sell twice as many cannolis."
-                price={5000} buyBuilding={buyMSB} visible={props.upgradesVisible.msbVisible}/> :
+                price={5000} buyUpgrade={buyMSB} visible={props.upgradesVisible.msbVisible}/> :
                 <Upgrade type="locked" unlock={10000}/>}
             {props.totalCannoli >= 10000 ?
                 props.upgradesVisible.best2Visible && <Upgrade type="cpc" cannoli={props.cannoli} setCannoli={props.setCannoli} setCPCMultiplier={props.setCPCMultiplier}
