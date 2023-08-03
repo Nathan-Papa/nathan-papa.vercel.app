@@ -107,8 +107,8 @@ const UpgradeList = (props) => {
             {props.totalCannoli >= 2500 ?
                 props.upgradesVisible.best1Visible && <Upgrade type="cpc" cannoli={props.cannoli} setCannoli={props.setCannoli} setCPCMultiplier={props.setCPCMultiplier}
                 name="Best in Town" description="Your cannoli are named the best in town, causing your 
-                clicks to be boosted by 5% of your cannoli per second."
-                price={1000} cpcMultiplier={.05 * props.cps} visible={props.upgradesVisible.best1Visible} setVisible={() => {props.setUpgradesVisible({...props.upgradesVisible, best1Visible: false})}} /> :
+                clicks to be boosted by 5% of your current cannoli per second."
+                price={1000} cpcMultiplier={.0005 * props.cps} visible={props.upgradesVisible.best1Visible} setVisible={() => {props.setUpgradesVisible({...props.upgradesVisible, best1Visible: false})}} /> :
                 <Upgrade type="locked" unlock={2500}/>}
             {props.totalCannoli >= 3000 ?
                 props.upgradesVisible.mangoVisible && <Upgrade type="cps" cannoli={props.cannoli} setCannoli={props.setCannoli} setCPSMultiplier={props.setCPSMultiplier}
@@ -127,8 +127,8 @@ const UpgradeList = (props) => {
             {props.totalCannoli >= 10000 ?
                 props.upgradesVisible.best2Visible && <Upgrade type="cpc" cannoli={props.cannoli} setCannoli={props.setCannoli} setCPCMultiplier={props.setCPCMultiplier}
                 name="Best in Italy" description="Your cannoli are granted the award of best in Italy, causing 
-                your clicks to be boosted by 5% of your cannoli per second."
-                price={5000} cpcMultiplier={.05 * props.cps} visible={props.upgradesVisible.best2Visible} setVisible={() => {props.setUpgradesVisible({...props.upgradesVisible, best2Visible: false})}} /> :
+                your clicks to be boosted by 5% of your current cannoli per second."
+                price={5000} cpcMultiplier={.0005 * props.cps} visible={props.upgradesVisible.best2Visible} setVisible={() => {props.setUpgradesVisible({...props.upgradesVisible, best2Visible: false})}} /> :
                 <Upgrade type="locked" unlock={10000}/>}
             {props.totalCannoli >= 12500 ?
                 props.cursor5Visible && <Upgrade type="cpc" cannoli={props.cannoli} setCannoli={props.setCannoli} setCPCMultiplier={props.setCPCMultiplier}
@@ -143,8 +143,8 @@ const UpgradeList = (props) => {
             {props.totalCannoli >= 30000 ?
                 props.upgradesVisible.best3Visible && <Upgrade type="cpc" cannoli={props.cannoli} setCannoli={props.setCannoli} setCPCMultiplier={props.setCPCMultiplier}
                 name="Best in the World" description="Your cannoli are famous for being the best in the world. 
-                Your clicks are boosted by 10% of your cannoli per second."
-                price={15000} cpcMultiplier={.1 * props.cps} visible={props.upgradesVisible.best3Visible} setVisible={() => {props.setUpgradesVisible({...props.upgradesVisible, best3Visible: false})}} /> :
+                Your clicks are boosted by 10% of your current cannoli per second."
+                price={15000} cpcMultiplier={.001 * props.cps} visible={props.upgradesVisible.best3Visible} setVisible={() => {props.setUpgradesVisible({...props.upgradesVisible, best3Visible: false})}} /> :
                 <Upgrade type="locked" unlock={30000}/>}
         </div>
     );

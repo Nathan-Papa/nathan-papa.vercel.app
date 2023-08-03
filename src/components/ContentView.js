@@ -103,7 +103,7 @@ const ContentView = (props) => {
                 </div>
                 <div className="flex flex-col h-full w-[40%] justify-around">
                     <div className="w-[80%] h-[40%] flex flex-col justify-between border-[#FFFDE7] border-[2px] rounded-lg p-[2%] overflow-auto">
-                        <h3 className="text-xl self-center">Python Minesweeper</h3>
+                        <h3 className="text-xl text-center">Python Minesweeper</h3>
                         <hr className="mb-[2%] mt-[1%]"/>
                         <p className="text-lg self-start w-[85%] ml-[2%]">
                             {`I wanted to try the python turtle module so I decided to
@@ -120,7 +120,7 @@ const ContentView = (props) => {
                         </a>
                     </div>
                     <div className="w-[80%] h-[40%] flex flex-col self-end justify-between border-[#FFFDE7] border-[2px] rounded-lg p-[2%] overflow-auto">
-                        <h3 className="text-xl self-center">JavaFX Calculator</h3>
+                        <h3 className="text-xl text-center">JavaFX Calculator</h3>
                         <hr className="mb-[2%]"/>
                         <p className="text-lg self-start w-[85%] ml-[2%]">
                             {`I wanted to create a GUI using Java as I had just learned Java, 
