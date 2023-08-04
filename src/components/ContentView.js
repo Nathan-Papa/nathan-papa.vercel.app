@@ -78,10 +78,12 @@ const ContentView = (props) => {
 
     if (props.visible == "home") {
         return (
-            <div className="flex w-[90%] h-[75%] justify-between items-center text-[#FFFDE7]">
-                <div className="flex flex-col h-[80%] self-center justify-between w-[45%] border-[#FFFDE7] border-[2px] overflow-y-auto rounded-lg p-[2%]">
-                    <h1 className="text-5xl">Nathan Papa</h1>
-                    <hr className="my-[2%]"/>
+            <div className="flex flex-col md:flex-row w-[90%] h-[75%] justify-between items-center text-[#FFFDE7] overflow-y-auto md:overflow-y-visible">
+                <div className="flex flex-col h-[80%] self-center justify-between w-full md:w-[45%] border-[#FFFDE7] border-[2px] overflow-y-auto rounded-lg p-[2%]">
+                    <div>
+                        <h1 className="text-3xl text-center md:text-4xl">Nathan Papa</h1>
+                        <hr />
+                    </div>
                     <p className="ml-[2%] mt-[2%]">
                         {`I'm an aspiring software engineer, currently a second-year student
                         studying computer science at Georgia Tech. My passion for computer
@@ -101,10 +103,12 @@ const ContentView = (props) => {
                         {`Phone Number: (931) 303-2306`}
                     </p>
                 </div>
-                <div className="flex flex-col h-full w-[40%] justify-around">
-                    <div className="w-[80%] h-[40%] flex flex-col justify-between border-[#FFFDE7] border-[2px] rounded-lg p-[2%] overflow-auto">
-                        <h3 className="text-xl text-center">Python Minesweeper</h3>
-                        <hr className="mb-[2%] mt-[1%]"/>
+                <div className="flex flex-col h-[50%] md:h-full w-full md:w-[45%] justify-around">
+                    <div className="w-full md:w-[80%] h-[40%] flex flex-col justify-between border-[#FFFDE7] border-[2px] rounded-lg p-[2%] overflow-auto">
+                        <div>
+                            <h3 className="text-xl text-center">Python Minesweeper</h3>
+                            <hr className="mb-[2%]" />
+                        </div>
                         <p className="text-lg self-start w-[85%] ml-[2%]">
                             {`I wanted to try the python turtle module so I decided to
                             create a python reboot of a classic video game: Minesweeper.
@@ -119,9 +123,11 @@ const ContentView = (props) => {
                             />
                         </a>
                     </div>
-                    <div className="w-[80%] h-[40%] flex flex-col self-end justify-between border-[#FFFDE7] border-[2px] rounded-lg p-[2%] overflow-auto">
-                        <h3 className="text-xl text-center">JavaFX Calculator</h3>
-                        <hr className="mb-[2%]"/>
+                    <div className="w-full md:w-[80%] h-[40%] flex flex-col self-end justify-between border-[#FFFDE7] border-[2px] rounded-lg p-[2%] overflow-auto">
+                        <div>
+                            <h3 className="text-xl text-center">JavaFX Calculator</h3>
+                            <hr className="mb-[2%]" />
+                        </div>
                         <p className="text-lg self-start w-[85%] ml-[2%]">
                             {`I wanted to create a GUI using Java as I had just learned Java, 
                             and I decided to try and create a calculator. Click the icon for the github.`}
