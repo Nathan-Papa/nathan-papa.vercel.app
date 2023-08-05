@@ -29,7 +29,7 @@ const Socials = (props) => {
     
     return (
         <div className="flex min-w-[70%] min-h-[5.5%] lg:min-h-[7%] justify-between px-[3%] items-center bg-[#680C07] text-[#E1E1E1] border-[2px] border-[#A8A9AD] rounded-t-lg">
-            <a href="https://www.linkedin.com/in/nathan-papa/" target="_blank">
+            <a href="https://www.linkedin.com/in/nathan-papa/" className="my-[2%] xl:my-0" target="_blank">
                 <Image 
                     src="/linkedinlogo.png"
                     alt="Linkedin Logo"
@@ -38,7 +38,7 @@ const Socials = (props) => {
                 />
             </a>
             <SocialsButton visible = {props.visible} />
-            <a href="https://github.com/Nathan-Papa" target="_blank">
+            <a href="https://github.com/Nathan-Papa" className="my-[2%] xl:my-0" target="_blank">
                 <Image 
                     src="/github.png"
                     alt="Github Logo"

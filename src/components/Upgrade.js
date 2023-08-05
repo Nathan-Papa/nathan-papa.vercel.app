@@ -29,8 +29,8 @@ const Upgrade = (props) => {
 
     if (props.type == "cps" && props.visible == true) {
         return (
-            <div ref={upgrade} className="flex justify-between min-h-[30%] w-full border-[#FFFDE7] border-[1px] rounded-md">
-                <div className="flex flex-col justify-between w-[60%] pl-[2%] my-[2%]">
+            <div ref={upgrade} className="flex justify-between min-h-[30%] w-full border-[#FFFDE7] md:text-sm xl:text-md 2xl:text-lg border-[1px] overflow-y-auto rounded-md">
+                <div className="flex flex-col justify-between w-[60%] pl-[2%] my-[1%]">
                     <p>{props.name}</p>
                     <p className="ml-[2%]">{props.description}</p>
                 </div>
@@ -42,8 +42,8 @@ const Upgrade = (props) => {
         );
     } else if (props.type == "cpc" && props.visible == true) {
         return (
-            <div ref={upgrade} className="flex justify-between min-h-[30%] w-full border-[#FFFDE7] border-[1px] rounded-md">
-                <div className="flex flex-col justify-between w-[60%] pl-[2%] my-[2%]">
+            <div ref={upgrade} className="flex justify-between min-h-[30%] w-full border-[#FFFDE7] md:text-sm xl:text-md 2xl:text-lg border-[1px] overflow-y-auto rounded-md">
+                <div className="flex flex-col justify-between w-[60%] pl-[2%] my-[1%]">
                     <p>{props.name}</p>
                     <p className="ml-[2%]">{props.description}</p>
                 </div>
@@ -55,8 +55,8 @@ const Upgrade = (props) => {
         );
     } else if (props.type == "boost" && props.visible == true) {
         return (
-            <div ref={upgrade} className="flex justify-between min-h-[30%] w-full border-[#FFFDE7] border-[1px] rounded-md">
-                <div className="flex flex-col justify-between w-[60%] pl-[2%] my-[2%]">
+            <div ref={upgrade} className="flex justify-between min-h-[30%] w-full border-[#FFFDE7] md:text-sm xl:text-md 2xl:text-lg border-[1px] overflow-y-auto rounded-md">
+                <div className="flex flex-col justify-between w-[60%] pl-[2%] my-[1%]">
                     <p>{props.name}</p>
                     <p className="ml-[2%]">{props.description}</p>
                 </div>
@@ -68,7 +68,7 @@ const Upgrade = (props) => {
         );
     } else if (props.type == "locked") {
         return (
-            <div className="flex justify-center items-center min-h-[25%] w-full border-[#FFFDE7] border-[1px] overflow-y-auto rounded-md">
+            <div className="flex justify-center items-center min-h-[30%] w-full border-[#FFFDE7] md:text-sm xl:text-md 2xl:text-lg border-[1px] overflow-y-auto rounded-md">
                 <p>Unlock this upgrade after gaining <u>{props.unlock}</u> total cannolis.</p>
             </div>
         );
