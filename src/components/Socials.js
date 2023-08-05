@@ -28,7 +28,7 @@ const Socials = (props) => {
     }
     
     return (
-        <div className="flex min-w-[70%] h-[7%] justify-between px-[3%] items-center bg-[#680C07] text-[#E1E1E1] border-[2px] border-[#A8A9AD] rounded-t-lg">
+        <div className="flex min-w-[70%] min-h-[5.5%] lg:min-h-[7%] justify-between px-[3%] items-center bg-[#680C07] text-[#E1E1E1] border-[2px] border-[#A8A9AD] rounded-t-lg">
             <a href="https://www.linkedin.com/in/nathan-papa/" target="_blank">
                 <Image 
                     src="/linkedinlogo.png"
