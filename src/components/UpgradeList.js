@@ -61,7 +61,7 @@ const UpgradeList = (props) => {
     }
 
     return (
-        <div className="flex flex-col justify-between items-center min-w-[50%] max-w-full md:max-w-[70%] h-[75%] text-[#FFFDE7] overflow-y-auto border-[#FFFDE7] p-[1%] border-[2px] rounded-lg">
+        <div className="flex flex-col justify-between items-center min-w-[50%] md:max-w-[70%] 2xl:max-w-[50%] h-[75%] text-[#FFFDE7] overflow-y-auto border-[#FFFDE7] p-[1%] border-[2px] rounded-lg">
             {props.totalCannoli >= 125 ? 
                 props.upgradesVisible.vanillaVisible && <Upgrade type="cps" cannoli={props.cannoli} setCannoli={props.setCannoli} setCPSMultiplier={props.setCPSMultiplier}
                 name="Vanilla Cannoli" description="Your taskforce can now bake vanilla cannoli, increasing your cannoli per second by 2%."

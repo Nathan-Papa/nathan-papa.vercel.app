@@ -30,39 +30,39 @@ const Upgrade = (props) => {
     if (props.type == "cps" && props.visible == true) {
         return (
             <div ref={upgrade} className="flex justify-between min-h-[30%] w-full border-[#FFFDE7] md:text-sm xl:text-md 2xl:text-lg border-[1px] overflow-y-auto rounded-md">
-                <div className="flex flex-col justify-between w-[60%] pl-[2%] my-[1%]">
+                <div className="flex flex-col w-[60%] pl-[2%] my-[1%]">
                     <p>{props.name}</p>
-                    <p className="ml-[2%]">{props.description}</p>
+                    <p className="ml-[2%] mt-[4%] text-sm">{props.description}</p>
                 </div>
-                <div className="flex flex-col justify-between w-[60%] pl-[2%] my-[2%]">
+                <div className="flex flex-col w-[40%] pl-[2%] my-[2%]">
                     <button onClick={buyCPSUpgrade} className="text-[#FFFDE7] max-w-[85%] text-lg hover:border-[#FFFDE7] mr-[2%] bg-[#680C07] border-[2px] border-[#A8A9AD] py-[1px] px-[5px] rounded-md self-center">Upgrade</button>
-                    <p className="self-center w-[70%] text-center">Price: {props.price} Cannoli</p>
+                    <p className="self-center w-[70%] mt-[4%] text-sm text-center">Price: {props.price} Cannoli</p>
                 </div>
             </div>
         );
     } else if (props.type == "cpc" && props.visible == true) {
         return (
             <div ref={upgrade} className="flex justify-between min-h-[30%] w-full border-[#FFFDE7] md:text-sm xl:text-md 2xl:text-lg border-[1px] overflow-y-auto rounded-md">
-                <div className="flex flex-col justify-between w-[60%] pl-[2%] my-[1%]">
+                <div className="flex flex-col w-[60%] pl-[2%] my-[1%]">
                     <p>{props.name}</p>
-                    <p className="ml-[2%]">{props.description}</p>
+                    <p className="ml-[2%] mt-[4%] text-sm">{props.description}</p>
                 </div>
-                <div className="flex flex-col justify-between w-[60%] pl-[2%] my-[2%]">
+                <div className="flex flex-col w-[40%] pl-[2%] my-[2%]">
                     <button onClick={buyCPCUpgrade} className="text-[#FFFDE7] max-w-[85%] text-lg hover:border-[#FFFDE7] mr-[2%] bg-[#680C07] border-[2px] border-[#A8A9AD] py-[1px] px-[5px] rounded-md self-center">Upgrade</button>
-                    <p className="self-center w-[70%] text-center">Price: {props.price} Cannoli</p>
+                    <p className="self-center w-[70%] mt-[4%] text-sm text-center">Price: {props.price} Cannoli</p>
                 </div>
             </div>
         );
     } else if (props.type == "boost" && props.visible == true) {
         return (
             <div ref={upgrade} className="flex justify-between min-h-[30%] w-full border-[#FFFDE7] md:text-sm xl:text-md 2xl:text-lg border-[1px] overflow-y-auto rounded-md">
-                <div className="flex flex-col justify-between w-[60%] pl-[2%] my-[1%]">
+                <div className="flex flex-col w-[60%] pl-[2%] my-[1%]">
                     <p>{props.name}</p>
-                    <p className="ml-[2%]">{props.description}</p>
+                    <p className="ml-[2%] mt-[4%] text-sm">{props.description}</p>
                 </div>
-                <div className="flex flex-col justify-between w-[60%] pl-[2%] my-[2%]">
+                <div className="flex flex-col w-[40%] pl-[2%] my-[2%]">
                     <button onClick={buyBoostUpgrade} className="text-[#FFFDE7] max-w-[85%] text-lg hover:border-[#FFFDE7] mr-[2%] bg-[#680C07] border-[2px] border-[#A8A9AD] py-[1px] px-[5px] rounded-md self-center">Upgrade</button>
-                    <p className="self-center w-[70%] text-center">Price: {props.price} Cannoli</p>
+                    <p className="self-center w-[70%] mt-[4%] text-sm text-center">Price: {props.price} Cannoli</p>
                 </div>
             </div>
         );

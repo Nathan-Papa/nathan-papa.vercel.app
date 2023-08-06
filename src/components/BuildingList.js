@@ -70,7 +70,7 @@ const BuildingList = (props) => {
     }
 
     return (
-        <div className="flex flex-col justify-between items-center min-w-[50%] max-w-full md:max-w-[70%] h-[75%] text-[#FFFDE7] overflow-y-auto border-[#FFFDE7] p-[1%] border-[2px] rounded-lg">
+        <div className="flex flex-col justify-between items-center min-w-[50%] md:max-w-[70%] 2xl:max-w-[50%] h-[75%] text-[#FFFDE7] overflow-y-auto border-[#FFFDE7] p-[1%] border-[2px] rounded-lg">
             <Building type="cps" building={props.buildings.autoClickers} buyBuilding={buyAutoClicker} cannoli={props.cannoli} setCannoli={props.setCannoli} 
                 setCPS={props.setCPS} name="Auto Clicker" description="Each auto clicker clicks the cannoli once every second." />
             {props.totalCannoli >= 50 ? <Building type="cps" building={props.buildings.nonnas} buyBuilding={buyNonna} cannoli={props.cannoli} setCannoli={props.setCannoli}
