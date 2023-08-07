@@ -109,7 +109,7 @@ const ContentView = (props) => {
                             <h3 className="text-xl text-center">Python Minesweeper</h3>
                             <hr className="mb-[2%]" />
                         </div>
-                        <p className="text-lg self-start w-[85%] ml-[2%]">
+                        <p className="text-sm lg:text-md 2xl:text-lg self-start w-[85%] ml-[2%]">
                             {`I wanted to try the python turtle module so I decided to
                             create a python reboot of a classic video game: Minesweeper.
                             Click the icon for the github.`}
@@ -128,7 +128,7 @@ const ContentView = (props) => {
                             <h3 className="text-xl text-center">JavaFX Calculator</h3>
                             <hr className="mb-[2%]" />
                         </div>
-                        <p className="text-lg self-start w-[85%] ml-[2%]">
+                        <p className="text-sm lg:text-md 2xl:text-lg self-start w-[85%] ml-[2%]">
                             {`I wanted to create a GUI using Java as I had just learned Java, 
                             and I decided to try and create a calculator. Click the icon for the github.`}
                         </p>
