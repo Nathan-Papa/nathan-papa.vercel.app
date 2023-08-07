@@ -21,7 +21,7 @@ const Building = (props) => {
         );
     } else if (props.type == "cpc") {
         return (
-            <div className="flex justify-between min-h-[30%] w-full border-[#FFFDE7] md:text-sm 2xl:text-md border-[1px] overflow-y-auto rounded-md">
+            <div className="flex justify-between min-h-[30%] w-full border-[#FFFDE7] md:text-sm xl:text-md 2xl:text-md border-[1px] overflow-y-auto rounded-md">
                 <div className="flex flex-col w-[60%] pl-[2%] my-[1%]">
                     {props.building.count != 1 ? <p>{`${props.building.count} ${props.name}s`}</p> : <p>{`${props.building.count} ${props.name}`}</p>}
                     <p className="ml-[2%] mt-[4%] text-sm">{props.description}</p>

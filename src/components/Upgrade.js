@@ -35,7 +35,7 @@ const Upgrade = (props) => {
                     <p className="ml-[2%] mt-[4%] text-sm">{props.description}</p>
                 </div>
                 <div className="flex flex-col w-[40%] pl-[2%] my-[2%]">
-                    <button onClick={buyCPSUpgrade} className="text-[#FFFDE7] max-w-[85%] text-lg hover:border-[#FFFDE7] mr-[2%] bg-[#680C07] border-[2px] border-[#A8A9AD] py-[1px] px-[5px] rounded-md self-center">Upgrade</button>
+                    <button onClick={buyCPSUpgrade} className="text-[#FFFDE7] max-w-[85%] md:text-md 2xl:text-lg hover:border-[#FFFDE7] mr-[2%] bg-[#680C07] border-[2px] border-[#A8A9AD] py-[1px] px-[5px] rounded-md self-center">Upgrade</button>
                     <p className="self-center w-[70%] mt-[4%] text-sm text-center">Price: {props.price} Cannoli</p>
                 </div>
             </div>
@@ -48,7 +48,7 @@ const Upgrade = (props) => {
                     <p className="ml-[2%] mt-[4%] text-sm">{props.description}</p>
                 </div>
                 <div className="flex flex-col w-[40%] pl-[2%] my-[2%]">
-                    <button onClick={buyCPCUpgrade} className="text-[#FFFDE7] max-w-[85%] text-lg hover:border-[#FFFDE7] mr-[2%] bg-[#680C07] border-[2px] border-[#A8A9AD] py-[1px] px-[5px] rounded-md self-center">Upgrade</button>
+                    <button onClick={buyCPCUpgrade} className="text-[#FFFDE7] max-w-[85%] md:text-md 2xl:text-lg hover:border-[#FFFDE7] mr-[2%] bg-[#680C07] border-[2px] border-[#A8A9AD] py-[1px] px-[5px] rounded-md self-center">Upgrade</button>
                     <p className="self-center w-[70%] mt-[4%] text-sm text-center">Price: {props.price} Cannoli</p>
                 </div>
             </div>
@@ -61,7 +61,7 @@ const Upgrade = (props) => {
                     <p className="ml-[2%] mt-[4%] text-sm">{props.description}</p>
                 </div>
                 <div className="flex flex-col w-[40%] pl-[2%] my-[2%]">
-                    <button onClick={buyBoostUpgrade} className="text-[#FFFDE7] max-w-[85%] text-lg hover:border-[#FFFDE7] mr-[2%] bg-[#680C07] border-[2px] border-[#A8A9AD] py-[1px] px-[5px] rounded-md self-center">Upgrade</button>
+                    <button onClick={buyBoostUpgrade} className="text-[#FFFDE7] max-w-[85%] md:text-md 2xl:text-lg hover:border-[#FFFDE7] mr-[2%] bg-[#680C07] border-[2px] border-[#A8A9AD] py-[1px] px-[5px] rounded-md self-center">Upgrade</button>
                     <p className="self-center w-[70%] mt-[4%] text-sm text-center">Price: {props.price} Cannoli</p>
                 </div>
             </div>
